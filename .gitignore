@@ -1,0 +1,35 @@
+# Python bytecode and tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local environment variables and secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Generated synthetic datasets (rebuild with scripts/setup_demo.py)
+data/raw/*.csv
+data/processed/*.csv
+
+# Generated model artifacts
+models/*.pkl
+models/*.joblib
+models/feature_names.json
+models/model_metrics.json
+
+# Logs, editor files, and OS metadata
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

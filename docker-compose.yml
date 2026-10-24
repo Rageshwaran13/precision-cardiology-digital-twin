@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  precision-cardiology:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: precision-cardiology-digital-twin:latest
+    container_name: precision_cardiology_app
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount data, models, dashboard and src for live reload and persistent state
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./dashboard:/app/dashboard
+      - ./src:/app/src
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1

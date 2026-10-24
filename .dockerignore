@@ -1,0 +1,20 @@
+.git/
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.env
+.streamlit/secrets.toml
+*.log
+.DS_Store
+Thumbs.db
+# Generated data/model files are mounted from the host by docker-compose.
+data/raw/*.csv
+data/processed/*.csv
+models/*.pkl
+models/*.joblib
+models/feature_names.json
+models/model_metrics.json
