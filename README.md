@@ -1,157 +1,181 @@
 # Precision Cardiology Digital Twin
 
-A research and hackathon proof-of-concept that combines synthetic electronic health record (EHR) data with wearable-style time-series signals and presents a model-generated cardiac-anomaly risk estimate in an interactive Streamlit dashboard with a 3D heart visualization.
+**An AI-powered cardiac monitoring research prototype combining synthetic electronic health records, wearable physiological signals, machine learning, and interactive 3D heart visualization.**
 
-> **Research demonstration only. Not for diagnosis, treatment, emergency response, or clinical decision-making.** The data are synthetic, and model results must not be interpreted as evidence of real-world clinical performance.
+**Project category:** Healthcare AI / Digital Health / Machine Learning
 
-![Digital twin heart visualization](dashboard/static/digital_twin_heart.jpg)
+> **Research demonstration only.** This project uses synthetic data and is not intended for diagnosis, treatment, emergency response, or clinical decision-making. Its model performance does not establish clinical accuracy.
 
-## Project overview
+## 1. Team Details
 
-The pipeline is designed to demonstrate five steps:
+| S. No. | Team Member   |
+| ------ | ------------- |
+| 1      | Rageshwaran P |
+| 2      | Laveena M     |
+| 3      | Yuvasri D S   |
+| 4      | Yashwanth D   |
 
-1. **Generate synthetic EHR records** for 500 simulated patients.
-2. **Generate wearable-style time series** with 720 hourly records per patient (30 days).
-3. **Merge and engineer features**, including six-hour rolling summaries.
-4. **Train a classifier** using the generated dataset and save the model artifacts locally.
-5. **Explore a Streamlit clinical cockpit** with EHR summaries, telemetry charts, a forecast banner, and an interactive 3D heart.
+## 2. College / Incubator Information
 
-The synthetic generator injects anomaly patterns into the final 24-hour window for a subset of simulated patients. This is useful for testing the software pipeline, but makes the task substantially easier than real clinical forecasting. Near-perfect scores on this generated data do **not** demonstrate clinical accuracy.
+* **College / Institution:** [Enter your official college name]
+* **Department:** [Enter your department]
+* **Incubator / Innovation Centre:** [Enter the official name, or state "Not applicable" if permitted by the submission rules]
 
-## Technology
+Replace these placeholders with your actual institutional details before submission.
 
-- **Python** for data generation and model training
-- **Pandas / NumPy / scikit-learn**, with XGBoost support where available
-- **Streamlit / Plotly** for the dashboard and telemetry charts
-- **Three.js / WebGL** for the 3D heart visualization
-- **Docker Compose** for containerized dashboard execution
+## 3. Problem Statement
 
-## Repository layout
+Cardiac conditions can involve changes in physiological signals before an event becomes clinically apparent. Conventional monitoring systems may present historical records and current measurements without combining them into a unified, forward-looking risk visualization.
 
-```text
-precision-cardiology-digital-twin/
-├── dashboard/
-│   ├── app.py
-│   ├── components/                 # EHR panel, risk banner, heart widget
-│   └── static/                     # Three.js assets and 3D heart model
-├── data/
-│   ├── raw/                        # Generated locally; not committed
-│   └── processed/                  # Generated locally; not committed
-├── docs/
-│   ├── Precision_Cardiology_Digital_Twin_Presentation.pptx
-│   └── precision_cardiology_blueprint.pdf
-├── models/                         # Generated locally; not committed
-├── scripts/
-│   └── setup_demo.py               # Rebuild data and train the model
-├── src/
-│   ├── data/                       # Synthetic data generation and merging
-│   ├── model/                      # Feature engineering, training, inference
-│   └── utils/
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
-```
+This project explores a research prototype that combines patient-level clinical information with wearable-style physiological time-series data to demonstrate how machine learning could identify synthetic cardiac-anomaly patterns.
 
-Generated CSV datasets and trained model artifacts are intentionally excluded from Git so the repository stays easier to clone and review. The setup script recreates them on your machine.
+The objective is to integrate these data sources into an interactive dashboard that presents risk estimates, physiological trends, and a 3D heart visualization in one interface.
 
-## Run locally
+## 4. Healthcare Use Case
 
-### 1. Install Python
+The prototype demonstrates a potential clinical decision-support workflow for research into cardiac monitoring.
 
-Use Python **3.11** for the most predictable setup.
+Its intended demonstration workflow is:
 
-### 2. Create and activate a virtual environment
+1. Review a simulated patient's demographic and clinical information.
+2. Examine wearable-style measurements such as heart rate, heart-rate variability, oxygen saturation, and sleep-related signals.
+3. Process physiological measurements using engineered time-series features.
+4. Display the model-generated cardiac-anomaly risk estimate.
+5. Explore the associated information through a dashboard with an interactive 3D heart visualization.
 
-**Windows PowerShell**
+The system is intended to illustrate a possible future monitoring workflow. It has not been clinically validated and must not be used to make decisions about real patients.
 
-```powershell
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
+## 5. Technical Stack
 
-**macOS / Linux**
+| Component             | Technology                                                 |
+| --------------------- | ---------------------------------------------------------- |
+| Programming language  | Python                                                     |
+| Data processing       | Pandas, NumPy                                              |
+| Machine learning      | scikit-learn, with XGBoost support where available         |
+| Interactive dashboard | Streamlit                                                  |
+| Data visualization    | Plotly                                                     |
+| 3D visualization      | Three.js and WebGL                                         |
+| Deployment            | Docker and Docker Compose                                  |
+| Data                  | Synthetic EHR records and generated wearable-style signals |
+
+## 6. AI/ML Model Details
+
+The prototype uses a gradient-boosting classification pipeline to demonstrate cardiac-anomaly risk estimation.
+
+### Dataset design
+
+* 500 simulated patients.
+* 30 days of hourly wearable-style records per patient.
+* 720 hourly records per simulated patient.
+* 360,000 wearable-style hourly records in total.
+* 33 engineered model features.
+* Synthetic anomaly patterns introduced into the final 24-hour window for a subset of simulated patients.
+
+### Feature engineering
+
+The pipeline combines clinical baseline information with wearable-style physiological measurements and six-hour rolling summaries.
+
+The feature groups include:
+
+* Clinical and demographic baseline features.
+* Instantaneous wearable measurements.
+* Rolling physiological statistics.
+* Sleep-stage indicators.
+* Encoded demographic variables.
+
+### Model evaluation
+
+The model is evaluated using a patient-level split in the synthetic demonstration dataset.
+
+Reported metrics from this synthetic task must not be interpreted as evidence of real-world clinical performance. The generated anomaly patterns are intentionally separable, and further evaluation on appropriate real-world datasets, calibration, leakage assessment, and independent validation would be required before clinical applications could be considered.
+
+## 7. System Architecture
+
+The project follows this conceptual pipeline:
+
+Synthetic EHR Generation + Wearable Signal Generation
+→ Data Integration
+→ Feature Engineering
+→ Gradient-Boosting Classification
+→ Risk Estimate and Physiological Trends
+→ Streamlit Dashboard + Interactive 3D Heart
+
+The architecture documentation and project presentation are provided in the repository's `docs/` directory.
+
+## 8. Demo Video
+
+**Working demonstration video:** [in process]
+
+The demonstration should show the application running, patient information, physiological charts, the risk-prediction interface, and the interactive 3D heart.
+
+The video must be uploaded to YouTube as **Unlisted**, and the link must be added here before final submission.
+
+## 9. Architecture and Project Documents
+
+* [Architecture / Project Blueprint PDF](docs/precision_cardiology_blueprint.pdf)
+* [Project Presentation PowerPoint](docs/Precision_Cardiology_Digital_Twin_Presentation.pptx)
+
+Verify that the blueprint contains the architecture diagram required by the submission checklist. If it does not, add a separate architecture diagram and export it as PDF or PPT.
+
+If the submission requires both PDF and PPT presentation formats, export the existing PowerPoint to PDF and add the resulting file to `docs/`.
+
+## 10. Installation and Execution
+
+### Prerequisites
+
+* Python 3.11 recommended.
+* Git.
+* Sufficient disk space for the generated datasets.
+
+### Install dependencies
 
 ```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
-python -m pip install --upgrade pip
+python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### 4. Generate the demonstration data and train the model
-
-From the repository root, run:
+### Generate synthetic data and train the model
 
 ```bash
 python scripts/setup_demo.py
 ```
 
-This runs the EHR generator, wearable generator, dataset merge, and model training in order. The generated time-series and merged CSV files can be large, so keep sufficient disk space available. The files are created under `data/` and the trained artifacts under `models/`.
-
-### 5. Start the dashboard
+### Run the dashboard
 
 ```bash
 streamlit run dashboard/app.py
 ```
 
-Open the local URL printed by Streamlit (normally `http://localhost:8501`).
+Open the local address displayed by Streamlit, normally `http://localhost:8501`.
 
-## Run with Docker
+See the existing setup instructions in this README for environment-specific commands.
 
-First complete steps 1–4 above on the host machine so `data/` and `models/` contain the generated files. Then run:
+## 11. Open-Source License
 
-```bash
-docker compose up --build
-```
+Third-party libraries, 3D models, and other external assets may have separate license requirements. Their original notices and redistribution conditions must be respected.
 
-Open `http://localhost:8501`. The Compose configuration mounts the local `data/`, `models/`, `dashboard/`, and `src/` directories into the container.
+A project-wide license must not be assumed to cover third-party materials that the team does not own.
 
-To stop the container:
+## 12. Limitations and Future Work
 
-```bash
-docker compose down
-```
+This is a proof-of-concept built using synthetic data. Its generated patterns and evaluation metrics do not establish clinical performance.
 
-## Rebuilding the data
+Future work includes:
 
-To regenerate the whole demo dataset and retrain the model:
+* Evaluation using appropriately governed and licensed clinical datasets.
+* Temporal validation and additional checks for information leakage.
+* Probability calibration and uncertainty estimation.
+* Explainable model outputs.
+* Clinical usability evaluation and applicable regulatory review.
 
-```bash
-python scripts/setup_demo.py
-```
+## 13. Safety and Privacy
 
-The generated CSV and model files are ignored by Git. Do not commit real patient data, secrets, API keys, or any other sensitive information.
+The current demonstration uses synthetic patient data. No real patient records should be committed to this public repository.
 
-## Evaluation and limitations
+The project is not a medical device and must not be used to guide diagnosis, treatment, or patient care.
 
-The evaluation values produced by the training script apply to a **synthetic, intentionally separable demonstration task**. They are not clinical validation results. Before any clinical use could even be considered, the project would require, at minimum:
+## 14. Repository
 
-- Evaluation on appropriately licensed, representative clinical data with suitable governance and approvals
-- Temporal and patient-level validation designed to avoid information leakage
-- Calibration, robust uncertainty reporting, and independent external validation
-- Clinical review, usability testing, privacy/security assessment, and applicable regulatory review
+**Public GitHub repository:**
 
-The project does not provide medical advice and must not be used to guide patient care.
-
-## Team
-
-- Rageshwaran P
-- Laveena M
-- Yuvasri D S
-- Yashwanth D
-
-## Project documents
-
-The presentation deck and project blueprint are available in [`docs/`](docs/). A step-by-step publishing guide is in [`docs/GITHUB_UPLOAD.md`](docs/GITHUB_UPLOAD.md).
-
-## Before making the repository public
-
-Check that you have permission to redistribute every non-code asset, particularly `dashboard/static/heart_model.glb` and `dashboard/static/digital_twin_heart.jpg`. The bundled Three.js library identifies itself as MIT-licensed; preserve upstream notices when redistributing it. See [`docs/THIRD_PARTY_ASSETS.md`](docs/THIRD_PARTY_ASSETS.md).
-
-No project-wide open-source license has been selected in this starter repository. Choose a license deliberately before inviting reuse or contributions.
+https://github.com/Rageshwaran13/precision-cardiology-digital-twin
